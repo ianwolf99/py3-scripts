@@ -1,0 +1,46 @@
+#import the modules
+import socket
+import sys
+from thread import *
+ip = sys.argv[1]
+port = sys.argv[2] 
+command = "ipconfig"
+
+#creating a tcp socket
+try:
+    tcp_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+except socket.error, e:
+    print("error ocurred when creating a socket.error: code",str(e[0]),"Error message:",e[1])
+    sys.exit()
+print ("sucess")
+
+tcp_socket.connect(ip,port)
+try:
+    tcp_socket.send(command)
+except socket.error,e:
+    print("Error ocurred when sending command error code:",str(e[0]),"Error message:",e[1])
+    sys.exit()
+print("command sent waiting for recv") 
+
+tcp_socket.bind(ip,port)
+tcp_socket.listen(2)
+print("listening for connection")
+connection,address = tcp_socket.accept()
+print("connected with address:"address)
+data = connection.recv(1024)
+print("message from client:" data)
+connection.sendall("connected")
+connection.close()
+#keeping the server alive
+while true:
+    connection,address = tcp.socket.accept()
+    print("connected with address:" address)
+
+    data = connection.recv(1024)
+    print("received data :"data)
+    connection.sendall("connected")
+
+def clienthandlers(connection)
+connection.send(command)
+#
+while true   
